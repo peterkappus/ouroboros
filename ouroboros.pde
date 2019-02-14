@@ -1,10 +1,11 @@
 
 
-float speed = 10;
+float speed = 1;
 
-int howMany = 10;
-float thickness = 0.001;
-
+int howMany = 60;
+float thickness = 1;
+boolean saveFrames = false;
+boolean fullScreen = true;
 
 boolean isColor = true;
 
@@ -17,11 +18,12 @@ float colorDelta = 0.05 * speed;
 
 
 //spikey
+/*
 float k = 1.95;
-float kDelta = -0.00005 * speed;
+float kDelta = -0.0005 * speed;
 float ampDelta = -0.02 * speed;
 float colorDelta = 0.004 * speed;
-
+*/
 
 float c = 0;
 float rotation = 0;
@@ -31,6 +33,14 @@ float amp;
 float rotationDelta = 0.00001 * speed;
 
 
+public void settings() {
+   if (fullScreen){
+    fullScreen();
+  } else {
+    size(1280,720);
+  }
+}
+
 
 void setup() {  // setup() runs once
   //stay put!
@@ -38,8 +48,6 @@ ampDelta = 0;
 rotationDelta = 0;
 
 amp = width * 0.49;
-  size(1280,720);
-  //fullScreen();
   frameRate(30);
   background(0);
   smooth(4);
@@ -92,8 +100,10 @@ void draw() {
   //howMany++;
   //thickness *= 1.01;
   
-  //saveFrame("output/flower_#####.tif");
-  println(frameRate);
+  if (saveFrames) {  
+    saveFrame("output/flower_#####.tif");
+    println(frameRate);
+  }
   
   //slowly fade out... draw a slighly opaque square over the image each iteration
   translate(-width/2,-height/2);
