@@ -37,6 +37,15 @@ function touchStarted() {
 
 }
 
+function update(id,value){
+  msgTag = select(id);
+  msgTag.html(value);
+}
+
+function updateVoices () {
+  update("#voices","voices: " + reverbs.length);
+}
+
 function killAVerb() {
   //disconnect and then remove the oldest reverb on the stack.
   /*env = new p5.Envelope();
@@ -45,8 +54,12 @@ function killAVerb() {
 */
   r = reverbs.shift()
   r.amp(0,10);
-  console.log("fading...");
-  setTimeout(function(){console.log("killing"); r.disconnect()}, 15000);
+  debug("fading...");
+  setTimeout(function(){
+    debug("killing"); 
+    r.disconnect();
+    updateVoices();
+  }, 15000);
 }
 
 function setReverb(reverbTime) {
@@ -54,7 +67,7 @@ function setReverb(reverbTime) {
   mic = null;
   //var reverbTime = timeSlider.value();
   //alert('ok');
-  debug("reverbtime: " + reverbTime)
+  //debug("reverbtime: " + reverbTime)
   createVoice(reverbTime);
 }
 
@@ -75,6 +88,8 @@ function createVoice(time){
   reverbs.push(myVerb);
 
   mute(true);
+  updateVoices();
+  update("#time","time: " + time);
 
 }
 
@@ -86,6 +101,7 @@ function startRecording() {
 }
 
 function debug(msg){
+  update("#msg",msg);
   console.log(msg);
 }
 
@@ -105,6 +121,7 @@ function keyPressed() {
 
   //"Enter"
   if(keyCode == 13){
+    debug("Building/Saving");
     stopRecording();
   }
 
@@ -122,7 +139,7 @@ function keyPressed() {
 
   // T: Show (T)otal reverbs
   if(keyCode == 84) {
-    console.log(reverbs.length);
+    debug("count: " + reverbs.length);
   }
 
   
