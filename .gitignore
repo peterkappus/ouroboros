@@ -1,3 +1,4 @@
-audio-recordings/*
+audio-exports/*
 visual-exports/*
+*.mp3
 .DS*
