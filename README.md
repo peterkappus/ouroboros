@@ -10,10 +10,16 @@ See inside the file for details.
 The audio piece uses [P5](http://p5js.org/) in a web browser (deployed locally via [P5 manager](https://www.npmjs.com/package/p5-manager)). 
 
 ### Live updating with Docker & P5 Manager
+Do these steps from inside the `public` folder.
+
+```
+cd public
+```
+
 - First time: `docker build -t p5manager .`
 - Then run
 ```
-docker run -it -p 5555:5555 -p 35729:35729 -v"$(PWD)/public":/app p5manager
+docker run -it -p 5555:5555 -p 35729:35729 -v"$(PWD)":/app p5manager
 ```
 - open a browser and visit http://localhost:5555/#/. (note the dot at the end)
 - If necessary, allow access to your microphone
@@ -21,7 +27,6 @@ docker run -it -p 5555:5555 -p 35729:35729 -v"$(PWD)/public":/app p5manager
   - **M**: "mute" or unmute the current voice. The screen will turn red when the mic is active.
   - Numbers 0 - 9: Create a new "voice" with given reverb length (0 for very short, 9 for very long)
   - **K**): "kill" the oldest voice by fading it out and removing it from the pool. Use this to conserve resources and prevent stuttering/clipping
-  - **T**: print out the "total" number of voices in the browser's JS console (if open)
   - **ENTER**: Save a WAV file of the current session. You'll need to reload the page after using this option to reset the buffer (TODO: make this reload unnecessary)
 
 
