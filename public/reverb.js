@@ -10,6 +10,13 @@ var maxVerbs = 4; // start killing 'em off after we have this many
 var timeSlider; // a slider for our reverbtime
 var mic = null; //initially...
 
+// hosted version must use HTTPS to allow microphone access
+
+if (location.protocol != 'https:' && window.location.host == 'gcp.kapp.us')
+{
+ location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+}
+
 //var reverbs = [];
 
 //press "M" to mute
@@ -17,6 +24,7 @@ var mic = null; //initially...
 
 function setup() {
   c = createCanvas(window.innerWidth,window.innerHeight);
+
   /*a = createDiv('this is some text');
   a.style("font-size: 5rem");
   a.parent("header");
@@ -34,7 +42,7 @@ function setup() {
 }
 
 function touchStarted() {
-
+  getAudioContext().resume();
 }
 
 function update(id,value){
@@ -113,7 +121,6 @@ function stopRecording() {
 
 function keyPressed() {
   //alert();
-    getAudioContext().resume()
   //number keys
   if (keyCode < 58 && keyCode > 47) {
     setReverb((keyCode-48) * maxTime / 10);
