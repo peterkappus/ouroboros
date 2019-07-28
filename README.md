@@ -52,3 +52,9 @@ source .secrets
 
 docker run -v "$(pwd)"/public:/data --env AWS_ACCESS_KEY_ID=$AWS_ID --env AWS_SECRET_ACCESS_KEY=$AWS_SECRET garland/aws-cli-docker aws s3 sync . s3://www.peterkappus.com/voice/ --delete --acl=public-read --exclude=".git*"
 ```
+
+
+### Deploy to GCP:
+```
+docker run -v "$(PWD)"/public:/data --rm -ti --volumes-from gcloud-config google/cloud-sdk gsutil rsync -r /data/ gs://gcp.kapp.us/
+```
