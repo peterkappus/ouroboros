@@ -9,26 +9,28 @@ See inside the file for details.
 ## Audio
 The audio piece uses [P5](http://p5js.org/) in a web browser (deployed locally via [P5 manager](https://www.npmjs.com/package/p5-manager)). 
 
-### Live updating with Docker & P5 Manager
-Do these steps from inside the `public` folder.
-
+### Setup
 ```
 cd public
+docker build -t p5manager .
 ```
 
-- First time: `docker build -t p5manager .`
-- Then run
+### Running Locally
 ```
-docker run -it -p 5555:5555 -p 35729:35729 -v"$(PWD)":/app p5manager
+cd public
+docker run -d -p 5555:5555 -p 35729:35729 -v"$(PWD)":/app p5manager
+open http://localhost:5555/#/.
 ```
-- open a browser and visit http://localhost:5555/#/. (note the dot at the end)
 - If necessary, allow access to your microphone
-- Use the following keyboard shortcuts:
-  - **M**: "mute" or unmute the current voice. The screen will turn red when the mic is active.
-  - **Numbers 0-9**: Create a new "voice" with given reverb time (0 = min; 9 = max)
-  - **K**: "kill" the oldest voice by fading it out and removing it. Use this to conserve resources and prevent stuttering/clipping
-  - **ENTER**: Save a WAV file of the current session. You'll need to reload the page after using this option to reset the buffer (TODO: make this reload unnecessary)
 
+### Operation / Keyboard Shortcuts
+- **M**: "mute" or unmute the current voice. The screen will turn red when the mic is active.
+- **Numbers 0-9**: Create a new "voice" with given reverb time (0 = min; 9 = max)
+- **K**: "kill" the oldest voice by fading it out and removing it. Use this to conserve resources and prevent stuttering/clipping
+- **ENTER**: Save a WAV file of the current session. You'll need to reload the page after using this option to reset the buffer (TODO: make this reload unnecessary)
+
+## Deployment to a web server
+NOTE: You MUST serve this via `https` or you'll get a security violation when you try to access the microphone.
 
 ### AWS Deployment
 To deploy into an S3 Bucket for hosting, you can use the S3 utility `s3cmd` like so

@@ -62,9 +62,8 @@ function killAVerb() {
 */
   r = reverbs.shift()
   r.amp(0,10);
-  debug("fading...");
+  debug("removing"); 
   setTimeout(function(){
-    debug("killing"); 
     r.disconnect();
     updateVoices();
   }, 15000);
@@ -124,6 +123,7 @@ function keyPressed() {
   //number keys
   if (keyCode < 58 && keyCode > 47) {
     setReverb((keyCode-48) * maxTime / 10);
+    mute(false);
   }
 
   //"Enter"
@@ -168,6 +168,10 @@ function mute(state) {
     background(gray_color);
     debug("muted");
   }
+}
+
+function unmute() {
+  mute(false);
 }
 
 function toggleMute() {
