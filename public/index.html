@@ -9,58 +9,62 @@
   td {border: 1px solid #999; padding:0 margin: 0}
   </style>
 </head>
-<body style="margin: 0">
-  <div id="header">
-  M: Mute &middot;
-  K: Kill oldest voice
-  0 - 9: create new voice w/ reverb from 0 - 100s
-  ENTER: Save WAV file
-  </div>
-  <table cellpadding="0" width="100%">
-    <tr>
-      <td width="33%">
-        <h1 id="msg"></h1>
-      </td>
-      <td width="33%">
-        <h1 id="time">Time</h1>
-      </td>
-      <td>
-        <h1 id="voices">Voices</h1>
-      </td>
-    </tr>
-  </table>
-  <table width="100%">
-    <tr>
-      <td onClick="toggleMute()" width="50%">
-        <h2 id="toggleMute">mute (m)</h2>
-      </td>
-      <td onClick="killAVerb();">
-        <h2 id="kill">Remove oldest voice (k)</h2>
-      </td>
-    </tr>
-  </table>
-  <table width="100%">
-    <tr>
-      <td onclick="setReverb(0)">
-        <h1 id="1">0</h1>
-      </td>
-      <td onclick="setReverb(maxTime/5)">
-        <h1 id="1">1</h1>
-      </td>
-      <td onclick="setReverb(maxTime*2/5)">
-        <h1 id="2">2</h1>
-      </td>
-      <td onclick="setReverb(maxTime*3/5)">
-        <h1 id="3">3</h1>
-      </td>
-      <td onclick="setReverb(maxTime*4/5)">
-        <h1 id="4">4</h1>
-      </td>
-      <td onclick="setReverb(maxTime)">
-        <h1 id="4">5</h1>
-      </td>
-    </tr>
-  </table>
+<body style="margin: 0" onclick="toggleMute()">
+  
+  <div id="controls">
+    
+    <div id="header">
+    M: Mute &middot;
+    K: Kill oldest voice
+    0 - 9: create new voice w/ reverb from 0 - 100s
+    ENTER: Save WAV file
+    </div>
+    <table cellpadding="0" width="100%">
+      <tr>
+        <td width="33%">
+          <h1 id="msg"></h1>
+        </td>
+        <td width="33%">
+          <h1 id="time">Time</h1>
+        </td>
+        <td>
+          <h1 id="voices">Voices</h1>
+        </td>
+      </tr>
+    </table>
+    <table width="100%">
+      <tr>
+        <td onClick="toggleMute()" width="50%">
+          <h2 id="toggleMute">mute (m)</h2>
+        </td>
+        <td onClick="killAVerb();">
+          <h2 id="kill">Remove oldest voice (k)</h2>
+        </td>
+      </tr>
+    </table>
+    <table width="100%">
+      <tr>
+        <td onclick="setReverb(0)">
+          <h1 id="1">0</h1>
+        </td>
+        <td onclick="setReverb(maxTime/5)">
+          <h1 id="1">1</h1>
+        </td>
+        <td onclick="setReverb(maxTime*2/5)">
+          <h1 id="2">2</h1>
+        </td>
+        <td onclick="setReverb(maxTime*3/5)">
+          <h1 id="3">3</h1>
+        </td>
+        <td onclick="setReverb(maxTime*4/5)">
+          <h1 id="4">4</h1>
+        </td>
+        <td onclick="setReverb(maxTime)">
+          <h1 id="4">5</h1>
+        </td>
+      </tr>
+    </table>
+  </div><!-- controls-->
 <!--div style="height: 20%" onClick="toggleMute()" id="canvas"></div-->
 </body>
 </html>

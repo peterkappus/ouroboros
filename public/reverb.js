@@ -5,7 +5,7 @@ var maxTime = 200;
 var reverbs = [];
 var recorder;
 var red_color = "#c00";
-var gray_color = "#999";
+var gray_color = "#222";
 var maxVerbs = 4; // start killing 'em off after we have this many
 var timeSlider; // a slider for our reverbtime
 var mic = null; //initially...
@@ -97,6 +97,8 @@ function createVoice(time){
   mute(true);
   updateVoices();
   update("#time","time: " + time);
+  
+  return(mic);
 
 }
 
@@ -154,7 +156,22 @@ function keyPressed() {
   if(keyCode == 77 ) {
     toggleMute();
   }
+  
+  //H: Hide controls
+  if(keyCode == 72 ) {
+    toggleControls();
+  }
+  
   //alert(keyCode);
+}
+
+function toggleControls() {
+  var x = document.getElementById("controls");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
 }
 
 function mute(state) {

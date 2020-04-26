@@ -19,6 +19,7 @@ docker build -t p5manager .
 ```
 cd public
 docker run -d -p 5555:5555 -p 35729:35729 -v"$(PWD)":/app p5manager
+sleep 3
 open http://localhost:5555/#/.
 ```
 - If necessary, allow access to your microphone
